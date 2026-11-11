@@ -1,0 +1,60 @@
+package stackModule;
+
+import base.Exercise; 
+import java.util.Scanner;
+
+public class StackExercise<E> extends Exercise {
+    private final SimpleStack<E> stack;
+    private final Scanner scanner;
+
+    public StackExercise(SimpleStack<E> stack) {
+        this.stack = stack;
+        this.scanner = new Scanner(System.in);
+    }
+
+    @Override
+    public void run() {
+        if (isFirstTime()) {
+            System.out.println("¡Bienvenido al módulo de Pilas (Stack)!");
+            setFirstTime(false);
+        } else {
+            System.out.println("Estado de la pila -> Vacía: " + stack.isEmpty() + " | Tamaño: " + stack.size());
+        }
+        
+        showMenu();
+    }
+
+    private void showMenu() {
+    }
+
+    public void executePush(E element) {
+        stack.push(element);
+        System.out.println("Elemento apilado: " + element);
+    }
+
+    public void executePop() {
+        if (stack.isEmpty()) {
+            System.out.println("Error: No se puede hacer POP, la pila está vacía.");
+            return;
+        }
+        System.out.println("Elemento removido: " + stack.pop());
+    }
+
+    public void executePeek() {
+        if (stack.isEmpty()) {
+            System.out.println("Error: La pila está vacía.");
+            return;
+        }
+        System.out.println("Último elemento (tope): " + stack.peek());
+        
+    }
+
+    public void executeClear() {
+        if (!stack.isEmpty()) {
+            stack.clear();
+            System.out.println("Pila vaciada.");
+        } else {
+            System.out.println("La pila ya está vacía (no se llamó a clear de la estructura).");
+        }
+    }
+}
